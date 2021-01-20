@@ -24,10 +24,14 @@
      <li>User: {{ user.get_username }}</li>
      <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
      <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+            {% if perms.BookInstance.Can_view_all_borrowed_books %}
+            <li><a href="{% url 'all-borrowed'%}">Borrowed books</a></li>
+            {% endif %}
    {% else %}
      <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
      <li><a href="{% url 'register' %}"> Sign up</a></li>
    {% endif %}
+
 
   </ul>
 
@@ -52,6 +56,11 @@
         </div>
     {% endif %}
   {% endblock %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
     </div>
   </div>
 </body>
