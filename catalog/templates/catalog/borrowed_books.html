@@ -8,7 +8,8 @@
     <li><a href="{{ books.book.get_absolute_url }}">{{ books.book }}</a></li>
     <p><strong>Borrowed by: </strong>{{ books.borrower|title }}</p>
     <p><strong>Due on: </strong>{{ books.due_back }}</p>
-    {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>  {% endif %}
+    <a href="{% url 'renew-book-librarian' books.id %}">Renew</a>
+
     {% endfor %}
 </ul>
     {% else %}
